@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tình Yêu 02 - Happy Card</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/app.css">
+  <link rel="stylesheet" href="../../assets/css/animation.css">
+  
+  <script>
+    const PAGE_IMAGES = {
+      "img1": "https://images.unsplash.com/photo-1518199266791-5375a83164ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "img2": "https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "img3": "https://images.unsplash.com/photo-1474552226712-ac0f0961a954?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    };
+  </script>
+  <style>
+    :root {
+      --lv-primary: #d62828;
+      --lv-bg-start: #ffe5ec;
+      --lv-bg-end: #e0c3fc;
+      --lv-text: #4a1520;
+    }
+    body.template-shell {
+      font-family: 'Lora', serif;
+      background: #fdfdfd;
+    }
+    .mobile-app-container {
+      background: linear-gradient(135deg, var(--lv-bg-start) 0%, var(--lv-bg-end) 100%);
+      color: var(--lv-text);
+      overflow: hidden;
+      position: relative;
+      min-height: 100vh;
+    }
+    .topbar {
+      background: transparent !important;
+      border-bottom: none !important;
+      padding-top: 15px;
+      position: relative;
+      z-index: 2;
+    }
+    .hearts-bg {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .heart-flake {
+      position: absolute;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 1.5rem;
+      animation: floatUp 10s linear infinite;
+      bottom: -10%;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+    }
+    .sparkles-bg {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image: radial-gradient(circle, #fff 10%, transparent 20%);
+      background-size: 20px 20px;
+      opacity: 0.1;
+      animation: twinkle 4s infinite alternate;
+    }
+    @keyframes twinkle {
+      0% { opacity: 0.05; }
+      100% { opacity: 0.15; }
+    }
+
+    .content-wrapper {
+      position: relative;
+      z-index: 1;
+      padding: 20px 20px 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .couple-names {
+      font-family: 'Dancing Script', cursive;
+      font-size: 4rem;
+      color: var(--lv-primary);
+      text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .slider-frame {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 20px;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.4);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.6), 0 10px 30px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(5px);
+      margin-bottom: 40px;
+      position: relative;
+    }
+    
+    .slider-frame::after {
+        content: '';
+        position: absolute;
+        top: -10px; right: -10px; bottom: -10px; left: -10px;
+        border-radius: 25px;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.8), inset 0 0 15px rgba(255, 255, 255, 0.8);
+        pointer-events: none;
+        z-index: 0;
+        animation: glowing 3s infinite alternate;
+    }
+
+    @keyframes glowing {
+        0% { opacity: 0.5; }
+        100% { opacity: 1; box-shadow: 0 0 25px rgba(255, 255, 255, 0.9), inset 0 0 25px rgba(255, 255, 255, 0.9); }
+    }
+
+    .slider-frame > div {
+        position: relative;
+        z-index: 1;
+        border-radius: 15px;
+        overflow: hidden;
+    }
+
+    .main-message {
+      background: rgba(255, 255, 255, 0.75);
+      border-radius: 20px;
+      padding: 40px 25px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      text-align: center;
+      line-height: 1.8;
+      font-size: 1.15rem;
+      margin-bottom: 50px;
+      position: relative;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      font-style: italic;
+    }
+    
+    .main-message::before {
+        content: '"';
+        font-family: 'Dancing Script', cursive;
+        font-size: 5rem;
+        color: var(--lv-primary);
+        position: absolute;
+        top: -20px;
+        left: 20px;
+        opacity: 0.3;
+        line-height: 1;
+    }
+
+    .love-quotes {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+    }
+
+    .quote-box {
+      background: rgba(255, 255, 255, 0.6);
+      border-left: 4px solid var(--lv-primary);
+      padding: 15px 20px;
+      border-radius: 0 10px 10px 0;
+      font-style: italic;
+    }
+
+    .btn-back {
+      background: #fff;
+      color: var(--lv-text) !important;
+      border: 1px solid var(--lv-text);
+      border-radius: 30px;
+      padding: 10px 30px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: all 0.3s;
+      display: inline-block;
+      margin-top: 40px;
+    }
+    .btn-back:hover {
+      background: var(--lv-text);
+      color: #fff !important;
+    }
+
+    .music-control {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.9);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      z-index: 100;
+      cursor: pointer;
+      color: var(--lv-primary);
+      font-size: 1.3rem;
+      transition: transform 0.2s;
+    }
+    .music-control:hover {
+        transform: scale(1.1);
+    }
+  </style>
+</head>
+<body class="template-shell mobile-mode">
+  <div class="mobile-app-container">
+    <header class="topbar">
+      <div class="container-wide">
+        <div class="nav-shell position-relative" style="justify-content:center;">
+          <strong style="font-family: 'Dancing Script', cursive; font-size: 1.5rem; color: var(--lv-primary);">Happy Card</strong>
+        </div>
+      </div>
+    </header>
+
+    <div class="hearts-bg" id="heartsBg"></div>
+    <div class="sparkles-bg"></div>
+
+    <main class="content-wrapper">
+      <h1 class="couple-names" data-aos="fade-down">Hạnh <span style="font-size:2.5rem; color: #ff4d6d;">❤️</span> Máy</h1>
+      
+      <div class="slider-frame" data-aos="zoom-in" data-aos-delay="200">
+        <div data-include-component="slider"></div>
+      </div>
+
+      <div class="main-message" data-aos="fade-up" data-aos-delay="400">
+        "Không cần một ngày đặc biệt hay một lý do nào cả. Chỉ là giữa những bộn bề của công việc và cuộc sống, anh lại bất chợt nghĩ về em. Anh nhớ những cuộc trò chuyện nhỏ nhặt, nhớ nụ cười của em, nhớ cảm giác được kể cho em nghe những điều xảy ra trong ngày. Có những người xuất hiện rồi rời đi, nhưng em lại là người khiến anh luôn muốn giữ trong lòng và nhớ đến mỗi ngày."
+      </div>
+      
+      <div class="love-quotes">
+        <div class="quote-box" data-aos="fade-right">
+          "Bình yên là khi mở mắt ra thấy em vẫn ở đó, nhắm mắt lại vẫn thấy nụ cười của em."
+        </div>
+        <div class="quote-box" data-aos="fade-left">
+          "Anh không hứa sẽ mang lại cho em một thế giới hoàn hảo, nhưng anh hứa sẽ làm cho thế giới của em ngập tràn tình yêu."
+        </div>
+        <div class="quote-box" data-aos="fade-right">
+          "Cảm ơn em đã đến và làm cho mọi khoảnh khắc bình thường trở nên đặc biệt."
+        </div>
+      </div>
+
+      <div class="text-center w-100" data-aos="fade-up">
+        <a class="btn-back" href="../../index.html">
+           <i class="fa-solid fa-arrow-left"></i> Về trang chủ
+        </a>
+      </div>
+    </main>
+
+    <div class="music-control" id="musicToggle">
+      <i class="fa-solid fa-music"></i>
+    </div>
+    <audio id="bgMusic" loop>
+      <source src="https://assets.mixkit.co/music/preview/mixkit-romantic-piano-126.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="../../assets/js/app.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Create flying hearts
+      const heartsBg = document.getElementById('heartsBg');
+      const heartCount = 20;
+      for (let i = 0; i < heartCount; i++) {
+        const heart = document.createElement('div');
+        heart.innerHTML = '<i class="fa-solid fa-heart"></i>';
+        heart.className = 'heart-flake';
+        heart.style.left = Math.random() * 100 + '%';
+        heart.style.animationDelay = Math.random() * 10 + 's';
+        heart.style.animationDuration = 10 + Math.random() * 15 + 's';
+        heart.style.fontSize = (0.8 + Math.random() * 1) + 'rem';
+        heart.style.color = Math.random() > 0.5 ? 'rgba(255, 255, 255, 0.7)' : 'rgba(255, 77, 109, 0.5)';
+        heartsBg.appendChild(heart);
+      }
+
+      // Handle music
+      const music = document.getElementById('bgMusic');
+      const musicToggle = document.getElementById('musicToggle');
+      let isPlaying = false;
+
+      musicToggle.addEventListener('click', () => {
+        if (isPlaying) {
+          music.pause();
+          musicToggle.innerHTML = '<i class="fa-solid fa-music"></i>';
+        } else {
+          music.play();
+          musicToggle.innerHTML = '<i class="fa-solid fa-pause"></i>';
+        }
+        isPlaying = !isPlaying;
+      });
+      
+      // Auto play try (most browsers will block without user interaction)
+      document.body.addEventListener('click', function initAudio() {
+         if (!isPlaying) {
+             music.play().then(() => {
+                 isPlaying = true;
+                 musicToggle.innerHTML = '<i class="fa-solid fa-pause"></i>';
+             }).catch(e => console.log("Audio play prevented"));
+             document.body.removeEventListener('click', initAudio);
+         }
+      }, { once: true });
+    });
+  </script>
+</body>
+</html>

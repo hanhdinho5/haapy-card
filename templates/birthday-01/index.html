@@ -3,21 +3,29 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sinh Nhật Đáng Yêu - Happy Card</title>
+  <title>Sinh Nhật Người Yêu - Happy Card</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Dancing+Script:wght@600;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/css/app.css">
   <link rel="stylesheet" href="../../assets/css/animation.css">
   
+  <script>
+    const PAGE_IMAGES = {
+      "img1": "https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "img2": "https://images.unsplash.com/photo-1520854221256-17451cc331bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "img3": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    };
+  </script>
+  
   <style>
     :root {
-      --bd-primary: #ff84b2;
-      --bd-secondary: #ffc6d9;
-      --bd-bg: #fff1f6;
+      --bd-primary: #ff4d85;
+      --bd-secondary: #ffb3c6;
+      --bd-bg: #fff0f3;
       --bd-text: #5c3a45;
     }
     body.template-shell {
@@ -33,26 +41,26 @@
       content: '';
       position: absolute;
       top: -50px; right: -50px;
-      width: 200px; height: 200px;
+      width: 300px; height: 300px;
       background: var(--bd-secondary);
       border-radius: 50%;
-      filter: blur(40px);
+      filter: blur(60px);
       z-index: 0;
-      opacity: 0.6;
+      opacity: 0.5;
     }
     .mobile-app-container::after {
       content: '';
       position: absolute;
-      bottom: 100px; left: -50px;
-      width: 150px; height: 150px;
+      bottom: 200px; left: -100px;
+      width: 250px; height: 250px;
       background: var(--bd-primary);
       border-radius: 50%;
-      filter: blur(50px);
+      filter: blur(80px);
       z-index: 0;
-      opacity: 0.4;
+      opacity: 0.3;
     }
     .topbar {
-      background: rgba(255, 241, 246, 0.8) !important;
+      background: rgba(255, 240, 243, 0.8) !important;
       backdrop-filter: blur(10px);
       border-bottom: 2px dashed var(--bd-secondary) !important;
       z-index: 10;
@@ -63,41 +71,65 @@
     }
     .hero-section {
       text-align: center;
-      padding: 40px 20px;
+      padding: 40px 20px 20px;
       position: relative;
       z-index: 1;
     }
     .hero-title {
-      font-size: 3rem;
+      font-family: 'Dancing Script', cursive;
+      font-size: 4.5rem;
       line-height: 1.1;
+      color: var(--bd-primary);
       text-shadow: 2px 2px 0px #fff, 4px 4px 0px var(--bd-secondary);
       margin-bottom: 15px;
-      animation: float 3s ease-in-out infinite;
+      animation: floatHero 3s ease-in-out infinite;
     }
     .hero-subtitle {
-      font-size: 1.1rem;
-      font-weight: 600;
+      font-size: 1.2rem;
+      font-weight: 700;
       background: var(--bd-primary);
       color: #fff;
       display: inline-block;
-      padding: 5px 15px;
-      border-radius: 20px;
-      box-shadow: 0 4px 10px rgba(255, 132, 178, 0.3);
+      padding: 8px 25px;
+      border-radius: 30px;
+      box-shadow: 0 4px 15px rgba(255, 77, 133, 0.4);
+      letter-spacing: 1px;
     }
+    
+    .slider-frame {
+      position: relative;
+      z-index: 1;
+      padding: 10px;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(255, 77, 133, 0.15);
+      margin: 0 15px 40px;
+    }
+    
+    .slider-frame .slider-component .carousel {
+        border-radius: 15px !important;
+    }
+
     .images-container {
       position: relative;
       z-index: 1;
       padding: 0 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+    .image-wrapper {
+      position: relative;
     }
     .image-block {
       border: 8px solid #fff;
       border-radius: 24px;
-      box-shadow: 0 15px 35px rgba(255, 132, 178, 0.15);
+      box-shadow: 0 15px 35px rgba(255, 77, 133, 0.15);
       transform: rotate(-2deg);
       transition: transform 0.3s;
-      margin-bottom: 30px;
+      overflow: hidden;
     }
-    .image-block:nth-child(even) {
+    .image-wrapper:nth-child(even) .image-block {
       transform: rotate(2deg);
     }
     .image-block:hover {
@@ -107,81 +139,156 @@
       background: linear-gradient(45deg, #ffe0ec, #fff);
       color: var(--bd-primary);
       font-weight: bold;
+      aspect-ratio: 4/5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+    
+    .img-caption {
+      text-align: center;
+      font-family: 'Dancing Script', cursive;
+      font-size: 2rem;
+      color: var(--bd-primary);
+      margin-top: 15px;
+    }
+
     .message-card {
-      background: #fff;
+      background: rgba(255, 255, 255, 0.9);
       border-radius: 30px;
-      padding: 30px;
-      margin: 20px 15px;
+      padding: 40px 25px 30px;
+      margin: 20px 15px 40px;
       box-shadow: 0 20px 40px rgba(0,0,0,0.05);
       position: relative;
       z-index: 1;
       border: 2px solid var(--bd-secondary);
       text-align: center;
     }
-    .message-card i {
-      font-size: 2rem;
+    .message-card::before {
+      content: '♥';
+      position: absolute;
+      top: -25px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 3rem;
       color: var(--bd-primary);
-      margin-bottom: 15px;
+      background: var(--bd-bg);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      line-height: 50px;
+      border: 2px solid var(--bd-secondary);
+    }
+    .message-card h3 {
+      margin-bottom: 20px;
+      font-size: 1.8rem;
     }
     .message-card p {
-      font-size: 1.05rem;
-      line-height: 1.7;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 15px;
     }
+    
+    .highlight-text {
+      font-weight: 700;
+      color: var(--bd-primary);
+    }
+
     .btn-back {
       background: var(--bd-primary);
       color: #fff !important;
       border-radius: 50px;
       padding: 12px 30px;
       font-weight: bold;
-      box-shadow: 0 8px 20px rgba(255, 132, 178, 0.4);
+      box-shadow: 0 8px 20px rgba(255, 77, 133, 0.4);
       display: inline-flex;
       align-items: center;
       gap: 10px;
       text-decoration: none;
       position: relative;
       z-index: 1;
+      transition: all 0.3s;
     }
-    @keyframes float {
+    .btn-back:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 25px rgba(255, 77, 133, 0.5);
+    }
+    
+    @keyframes floatHero {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
+    }
+    
+    .floating-hearts {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0; left: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
     }
   </style>
 </head>
 <body class="template-shell mobile-mode">
   <div class="mobile-app-container">
+    <div class="floating-hearts" id="floatingHearts"></div>
+
     <header class="topbar">
       <div class="container-wide">
         <div class="nav-shell position-relative" style="justify-content:center;">
-          <strong class="bd-title ms-2" style="font-size: 1.3rem;">🎂 Birthday Joy</strong>
+          <strong class="bd-title ms-2" style="font-size: 1.3rem;">🎂 Happy Birthday</strong>
         </div>
       </div>
     </header>
 
     <main class="pb-5">
       <div class="hero-section" data-aos="zoom-in">
-        <h1 class="hero-title">Happy<br>Birthday!</h1>
-        <div class="hero-subtitle">Chúc bạn một ngày tuyệt vời 💖</div>
+        <h2 class="bd-title mb-2" style="font-size: 1.5rem; color: var(--bd-text);">Gửi trọn tình yêu đến,</h2>
+        <h1 class="hero-title">Thúy Kiều</h1>
+        <div class="hero-subtitle mt-2">Happy Birthday My Love 💖</div>
       </div>
 
-      <div class="images-container" data-aos="fade-up" data-aos-delay="100">
-        <div class="dynamic-img" data-img="img1"></div>
-        <div class="dynamic-img" data-img="img2"></div>
+      <div class="slider-frame" data-aos="zoom-in" data-aos-delay="200">
+        <div data-include-component="slider"></div>
       </div>
 
       <div class="message-card" data-aos="fade-up">
-        <i class="fa-solid fa-gift"></i>
-        <h3>Gửi ngàn lời chúc</h3>
-        <p>Tuổi mới mong bạn luôn vui vẻ, hạnh phúc, đạt được mọi ước mơ và luôn xinh đẹp rạng ngời như bây giờ nhé! Mãi mãi tuổi 18!</p>
+        <h3>Tuổi Mới Thật Rực Rỡ</h3>
+        <p>Chúc mừng sinh nhật người con gái tuyệt vời nhất của anh. Cảm ơn em vì đã xuất hiện và mang đến cho cuộc sống của anh những mảng màu tươi sáng nhất.</p>
+        <p>Tuổi mới mong em luôn <span class="highlight-text">bình an</span>, luôn <span class="highlight-text">hạnh phúc</span> và nụ cười rạng rỡ sẽ luôn nở trên môi. Anh sẽ luôn ở đây, đồng hành và yêu thương em nhiều hơn mỗi ngày.</p>
       </div>
 
-      <div class="images-container" data-aos="fade-up">
-        <div class="dynamic-img" data-img="img3"></div>
+      <div class="images-container">
+        <div class="image-wrapper" data-aos="fade-right">
+          <div class="dynamic-img" data-img="img1"></div>
+          <div class="img-caption">Nụ cười rạng rỡ của em...</div>
+        </div>
+        
+        <div class="message-card" data-aos="fade-up" style="margin: 10px 0;">
+          <p style="font-style: italic;">"Người ta nói trên đời không có gì là hoàn hảo, nhưng đối với anh, em là sự tồn tại hoàn hảo nhất."</p>
+        </div>
+        
+        <div class="image-wrapper" data-aos="fade-left">
+          <div class="dynamic-img" data-img="img2"></div>
+          <div class="img-caption">Là ánh nắng của anh...</div>
+        </div>
+        
+        <div class="image-wrapper" data-aos="fade-right">
+          <div class="dynamic-img" data-img="img3"></div>
+          <div class="img-caption">Yêu em trọn vẹn từng khoảnh khắc!</div>
+        </div>
+      </div>
+      
+      <div class="message-card" data-aos="zoom-in">
+        <h3>I Love You 3000!</h3>
+        <p>Hôm nay là một ngày thật đặc biệt, không chỉ với em mà với cả anh nữa, vì đó là ngày thiên thần của anh chào đời.</p>
+        <p class="highlight-text" style="font-size: 1.3rem;">Chúc mừng sinh nhật em yêu! 🎉🎂</p>
       </div>
       
       <div class="text-center mt-5 mb-3" data-aos="fade-up">
         <a class="btn-back" href="../../index.html">
-           <i class="fa-solid fa-arrow-left"></i> Quay lại Home
+           <i class="fa-solid fa-arrow-left"></i> Về trang chủ
         </a>
       </div>
     </main>
@@ -193,15 +300,45 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+      // Load dynamic images into blocks
       document.querySelectorAll(".dynamic-img").forEach(container => {
         const key = container.getAttribute("data-img");
         const src = PAGE_IMAGES[key];
         if (src && src.trim() !== "") {
-          container.innerHTML = `<div class="image-block"><img src="${src}" alt="Ảnh chi tiết"></div>`;
+          container.innerHTML = `<div class="image-block"><img src="${src}" alt="Ảnh chi tiết" style="width: 100%; display: block; border-radius: 16px;"></div>`;
         } else {
           container.innerHTML = `<div class="image-block img-placeholder"><span>Chưa có ảnh (${key})</span></div>`;
         }
       });
+
+      // Subtle floating hearts background
+      const heartsContainer = document.getElementById('floatingHearts');
+      for (let i = 0; i < 15; i++) {
+        const heart = document.createElement('div');
+        heart.innerHTML = '<i class="fa-solid fa-heart"></i>';
+        heart.style.position = 'absolute';
+        heart.style.color = 'rgba(255, 179, 198, 0.4)';
+        heart.style.left = Math.random() * 100 + '%';
+        heart.style.bottom = '-50px';
+        heart.style.fontSize = (0.5 + Math.random() * 1) + 'rem';
+        
+        const animName = 'floatHeart' + i;
+        heart.style.animation = \`\${animName} \${5 + Math.random() * 5}s linear infinite\`;
+        heart.style.animationDelay = \`\${Math.random() * 5}s\`;
+        
+        const style = document.createElement('style');
+        style.innerHTML = \`
+          @keyframes \${animName} {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+          }
+        \`;
+        document.head.appendChild(style);
+        
+        heartsContainer.appendChild(heart);
+      }
     });
   </script>
 </body>
