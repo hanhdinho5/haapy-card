@@ -3,11 +3,11 @@
     <div class="carousel-inner" data-slider-inner>
       <!-- Items dynamically injected here -->
     </div>
-    <button class="carousel-control-prev" type="button" data-slider-control="prev" style="width: 15%;">
+    <button class="carousel-control-prev" type="button" data-slider-control="prev" data-bs-slide="prev" style="width: 15%;">
       <span class="carousel-control-prev-icon" aria-hidden="true" style="background-color: rgba(0,0,0,0.5); border-radius: 50%; width: 2.5rem; height: 2.5rem; background-size: 50%;"></span>
       <span class="visually-hidden">Previous</span>
     </button>
-    <button class="carousel-control-next" type="button" data-slider-control="next" style="width: 15%;">
+    <button class="carousel-control-next" type="button" data-slider-control="next" data-bs-slide="next" style="width: 15%;">
       <span class="carousel-control-next-icon" aria-hidden="true" style="background-color: rgba(0,0,0,0.5); border-radius: 50%; width: 2.5rem; height: 2.5rem; background-size: 50%;"></span>
       <span class="visually-hidden">Next</span>
     </button>
@@ -83,7 +83,7 @@
     if (sliderImages.length === 0 && typeof PAGE_IMAGES !== 'undefined' && PAGE_IMAGES) {
       for (const [key, src] of Object.entries(PAGE_IMAGES)) {
         if (src && src.trim() !== '') {
-          sliderImages.push({ src, alt: `Hình ảnh ${key}` });
+          sliderImages.push({ src, alt: (document.title ? document.title.split('|')[0].trim() : 'Hình ảnh') + ' - ' + key });
         }
       }
     }

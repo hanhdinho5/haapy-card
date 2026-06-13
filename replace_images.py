@@ -5,18 +5,20 @@ import json
 import random
 
 API_KEY = "rOKw05DEUqvpYWdsKEADRkGS0La37whfj6D1MPiOoRq4vWkTrRj4Auak"
-BASE_DIR = "/home/hanh-dinh/Downloads/Project/haapy-card/templates"
+BASE_DIR = "/home/hanh-dinh/Downloads/Project/haapy-card/mau-thiep"
 
 THEMES = {
-    "birthday": "birthday cake celebration",
-    "christmas": "christmas tree",
-    "getwell": "get well soon flowers",
-    "graduation": "graduation cap",
-    "love": "romantic couple",
-    "newyear": "new year fireworks",
-    "thankyou": "thank you flowers",
-    "wedding": "wedding couple",
-    "womensday": "beautiful woman flowers"
+    "thiep-sinh-nhat-nguoi-yeu": "birthday cake celebration",
+    "thiep-sinh-nhat-hien-dai": "birthday cake celebration",
+    "thiep-giang-sinh-an-lanh": "christmas tree",
+    "thiep-chuc-suc-khoe": "get well soon flowers",
+    "thiep-chuc-mung-tot-nghiep": "graduation cap",
+    "thiep-to-tinh-lang-man": "romantic couple",
+    "thiep-tinh-yeu-am-nhac": "romantic couple",
+    "thiep-chuc-mung-nam-moi": "new year fireworks",
+    "thiep-cam-on-thanh-lich": "thank you flowers",
+    "thiep-cuoi-sang-trong": "wedding couple",
+    "thiep-quoc-te-phu-nu": "beautiful woman flowers"
 }
 
 def get_pexels_images(query, count):
@@ -39,7 +41,7 @@ def get_pexels_images(query, count):
 templates = [d for d in os.listdir(BASE_DIR) if os.path.isdir(os.path.join(BASE_DIR, d))]
 
 for t in templates:
-    theme_key = t.split('-')[0]
+    theme_key = t
     query = THEMES.get(theme_key, "beautiful")
     
     idx_path = os.path.join(BASE_DIR, t, "index.html")

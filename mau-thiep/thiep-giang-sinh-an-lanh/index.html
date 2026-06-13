@@ -3,7 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Merry Christmas - Happy Card</title>
+  <title>Thiệp Giáng Sinh An Lành, Ấm Áp 🎄 | Haappy Card</title>
+  <meta name="description" content="Thiệp chúc mừng Giáng sinh (Merry Christmas) đẹp mắt với hiệu ứng tuyết rơi lãng mạn. Gửi trọn thông điệp ấm áp, an lành đến những người yêu thương nhất.">
+  <meta property="og:title" content="Thiệp Giáng Sinh An Lành, Ấm Áp 🎄 | Haappy Card">
+  <meta property="og:description" content="Thiệp chúc mừng Giáng sinh (Merry Christmas) đẹp mắt với hiệu ứng tuyết rơi lãng mạn. Gửi trọn thông điệp ấm áp, an lành đến những người yêu thương nhất.">
+  <meta property="og:image" content="https://images.pexels.com/photos/29461940/pexels-photo-29461940.jpeg?auto=compress&cs=tinysrgb&h=650&w=940">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://hanhdinh.github.io/haapy-card/mau-thiep/thiep-giang-sinh-an-lanh/index.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -193,7 +199,7 @@
         const key = container.getAttribute("data-img");
         const src = PAGE_IMAGES[key];
         if (src && src.trim() !== "") {
-          container.innerHTML = `<div class="image-block"><img src="${src}" alt="Ảnh chi tiết"></div>`;
+          container.innerHTML = `<div class="image-block"><img src="${src}" alt="Thiệp chúc mừng Giáng sinh an lành - ${key}"></div>`;
         } else {
           container.innerHTML = `<div class="image-block img-placeholder"><span>Chưa có ảnh (${key})</span></div>`;
         }
