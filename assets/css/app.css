@@ -23,12 +23,14 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
   color: var(--text);
+  overflow-x: hidden;
   background:
     radial-gradient(circle at top left, rgba(255, 107, 139, 0.14), transparent 32%),
     radial-gradient(circle at right top, rgba(124, 131, 253, 0.14), transparent 26%),
