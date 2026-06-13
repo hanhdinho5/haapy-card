@@ -15,9 +15,9 @@
   
   <script>
     const PAGE_IMAGES = {
-      "img1": "https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      "img2": "https://images.unsplash.com/photo-1520854221256-17451cc331bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      "img3": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      "img1": "https://images.pexels.com/photos/13142788/pexels-photo-13142788.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "img2": "https://images.pexels.com/photos/30264953/pexels-photo-30264953.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "img3": "https://images.pexels.com/photos/36211802/pexels-photo-36211802.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
     };
   </script>
   
@@ -244,7 +244,7 @@
 
     <main class="pb-5">
       <div class="hero-section" data-aos="zoom-in">
-        <h2 class="bd-title mb-2" style="font-size: 1.5rem; color: var(--bd-text);">Gửi trọn tình yêu đến,</h2>
+        <h2 class="bd-title mb-2" style="font-size: 1.5rem; color: var(--bd-text);">Gửi trọn tình yêu đến em</h2>
         <h1 class="hero-title">Thúy Kiều</h1>
         <div class="hero-subtitle mt-2">Happy Birthday My Love 💖</div>
       </div>
@@ -305,7 +305,7 @@
         const key = container.getAttribute("data-img");
         const src = PAGE_IMAGES[key];
         if (src && src.trim() !== "") {
-          container.innerHTML = `<div class="image-block"><img src="${src}" alt="Ảnh chi tiết" style="width: 100%; display: block; border-radius: 16px;"></div>`;
+          container.innerHTML = `<div class="image-block"><img src="${src}" alt="Ảnh chi tiết" style="width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; border-radius: 16px;"></div>`;
         } else {
           container.innerHTML = `<div class="image-block img-placeholder"><span>Chưa có ảnh (${key})</span></div>`;
         }

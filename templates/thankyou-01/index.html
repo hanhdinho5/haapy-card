@@ -13,6 +13,12 @@
   <link rel="stylesheet" href="../../assets/css/app.css">
   <link rel="stylesheet" href="../../assets/css/animation.css">
   
+    <script>
+    const PAGE_IMAGES = {
+      "img1": "https://images.pexels.com/photos/191429/pexels-photo-191429.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "img2": "https://images.pexels.com/photos/333850/pexels-photo-333850.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+    };
+  </script>
   <style>
     :root {
       --bd-primary: #bfa15f;
@@ -174,7 +180,7 @@
         const key = container.getAttribute("data-img");
         const src = PAGE_IMAGES[key];
         if (src && src.trim() !== "") {
-          container.innerHTML = `<div class="image-block"><img src="${src}" alt="Ảnh chi tiết"></div>`;
+          container.innerHTML = `<div class="image-block"><img src="${src}" alt="Ảnh chi tiết" style="width: 100%; aspect-ratio: 4/5; object-fit: cover;"></div>`;
         } else {
           container.innerHTML = `<div class="image-block img-placeholder"><span>Chưa có ảnh (${key})</span></div>`;
         }
